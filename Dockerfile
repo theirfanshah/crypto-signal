@@ -10,8 +10,7 @@ RUN cd /tmp && \
   make && \
   make install
 
-ADD app/requirements-step-1.txt /app/requirements-step-1.txt
-ADD app/requirements-step-2.txt /app/requirements-step-2.txt
+ADD app/ /app
 WORKDIR /app
 
 # Pip doesn't install requirements sequentially.
@@ -20,4 +19,4 @@ WORKDIR /app
 RUN pip install -r requirements-step-1.txt
 RUN pip install -r requirements-step-2.txt
 
-CMD ["python","app.py"]
+CMD ["/usr/local/bin/python","app.py"]
